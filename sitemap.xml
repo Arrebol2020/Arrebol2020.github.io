@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://arrebol2020.com/messageboard/index.html</loc>
-    
-    <lastmod>2021-04-20</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arrebol2020.com/posts/2730e790/</loc>
     
     <lastmod>2021-04-20</lastmod>
@@ -499,6 +492,13 @@
   </url>
   
   <url>
+    <loc>https://arrebol2020.com/messageboard/index.html</loc>
+    
+    <lastmod>2021-04-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://arrebol2020.com/gallery/index.html</loc>
     
     <lastmod>2021-03-18</lastmod>
@@ -606,7 +606,7 @@
   </url>
   
   <url>
-    <loc>https://arrebol2020.com/tags/%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B/</loc>
+    <loc>https://arrebol2020.com/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -620,14 +620,14 @@
   </url>
   
   <url>
-    <loc>https://arrebol2020.com/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>https://arrebol2020.com/tags/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://arrebol2020.com/tags/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/</loc>
+    <loc>https://arrebol2020.com/tags/%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -746,13 +746,6 @@
   </url>
   
   <url>
-    <loc>https://arrebol2020.com/tags/Regression/</loc>
-    <lastmod>2021-04-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://arrebol2020.com/tags/Classification-based/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
@@ -768,6 +761,13 @@
   
   <url>
     <loc>https://arrebol2020.com/tags/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</loc>
+    <lastmod>2021-04-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://arrebol2020.com/tags/Regression/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -902,13 +902,6 @@
   </url>
   
   <url>
-    <loc>https://arrebol2020.com/categories/%E5%B7%AE%E7%BC%BA%E8%A1%A5%E6%BC%8F/%E8%BD%AC%E8%BD%BD/</loc>
-    <lastmod>2021-04-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://arrebol2020.com/categories/%E6%95%99%E7%A8%8B/PyTorch/PyTorch-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%9A60-%E5%88%86%E9%92%9F%E9%97%AA%E7%94%B5%E6%88%98/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
@@ -938,6 +931,13 @@
   
   <url>
     <loc>https://arrebol2020.com/categories/%E8%AE%BA%E6%96%87/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2021-04-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://arrebol2020.com/categories/%E5%B7%AE%E7%BC%BA%E8%A1%A5%E6%BC%8F/%E8%BD%AC%E8%BD%BD/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
