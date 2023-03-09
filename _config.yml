@@ -97,10 +97,10 @@ comments:
     issue_term:   # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: <Arrebol2020>/<BlogDiscussions>             # <gh-username>/<repo>
-    repo_id:
-    category:
-    category_id:
+    repo: Arrebol2020/Arrebol2020.github.io             # <gh-username>/<repo>
+    repo_id: R_kgDOJHNuOg
+    category: Announcements
+    category_id: DIC_kwDOJHNuOs4CUwVb
     mapping:           # optional, default to 'pathname'
     input_position:    # optional, default to 'bottom'
     lang:              # optional, default to the value of `site.lang`
