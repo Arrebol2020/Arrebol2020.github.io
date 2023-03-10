@@ -2,10 +2,12 @@
 layout: post
 title: TinyWebServer 相关函数使用与样例 [定时器]
 date: 2023-03-09 19:13 +0800
-categories: [C++, 项目]
-tags: [TinyWebServer, SIGALRM信号]
+categories:
+- 项目
+tags:
+- TinyWebServer
+- C++
 ---
-
 Linux 提供了三种定时的方法：
 
 - socket 选项 SO_RECVTIMEO 和 SO_SNDTIMEO
@@ -125,3 +127,6 @@ ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 ```
 
 当套接字发送缓冲区变满时，send 通常会阻塞，除非套接字设置为非阻塞模式，当缓冲区变满时，返回 EAGAIN 或者 EWOULDBLOCK 错误，此时可以调用 select 函数来监视何时可以发送数据
+
+
+
