@@ -21,13 +21,13 @@ timezone: Asia/Shanghai
 
 title: Arrebol's blog                       # the main title
 
-tagline: 一蓑烟雨任平生   # it will display as the sub-title
+tagline: 归时休放烛花红，待踏马蹄清夜月   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   Arrebol,C++, 计算机, 博客, 笔记和生活, Blog, computer, notes, diary and life.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: 'https://Arrebol2020.github.io'
+url: 'https://arrebol2020.com'
 
 github:
   username: Arrebol2020             # change to your github username
@@ -198,3 +198,6 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+  
+feed:
+  path: /feed.atom

@@ -4,8 +4,8 @@ title: TinyWebServer 相关函数使用与样例 [定时器]
 date: 2023-03-09 19:13 +0800
 categories:
 - 项目
-tags:
 - TinyWebServer
+tags:
 - C++
 ---
 Linux 提供了三种定时的方法：
@@ -130,3 +130,7 @@ ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 
 
 
+## 参考
+
+- 最新版Web服务器项目详解 - 07 定时器处理非活动连接（上）：https://mp.weixin.qq.com/s/mmXLqh_NywhBXJvI45hchA
+- 最新版Web服务器项目详解 - 08 定时器处理非活动连接（下）：https://mp.weixin.qq.com/s/fb_OUnlV1SGuOUdrGrzVgg

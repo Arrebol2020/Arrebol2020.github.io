@@ -4,8 +4,8 @@ title: TinyWebServer 相关函数使用与样例 [日志]
 date: 2023-03-10 15:02 +0800
 categories:
 - 项目
-tags:
 - TinyWebServer
+tags:
 - C++
 ---
 
@@ -214,4 +214,4 @@ fflush() 会强迫将缓冲区内的数据写回参数 stream 指定的文件中
 ## 参考
 
 - 最新版Web服务器项目详解 - 09 日志系统（上）：https://mp.weixin.qq.com/s/IWAlPzVDkR2ZRI5iirEfCg
-- 
+- 最新版Web服务器项目详解 - 10 日志系统（下）：https://mp.weixin.qq.com/s/f-ujwFyCe1LZa3EB561ehA
