@@ -28,7 +28,9 @@ V 操作会使得信号量的值加 1，如果此时信号量的值小于等于 
 
 在 C++ 中，常用的信号量函数包括 `sem_init()`、`sem_destroy()`、`sem_wait()` 和 `sem_post()`，它们的具体定义、参数名称和解释、所要的头文件、函数作用和函数返回值如下：
 
-`sem_init()` 函数定义：
+### sem_init 函数
+
+函数定义：
 
 ```c++
 int sem_init(sem_t *sem, int pshared, unsigned int value);
@@ -42,7 +44,9 @@ int sem_init(sem_t *sem, int pshared, unsigned int value);
 - 函数作用：初始化一个信号量。
 - 函数返回值：若成功则返回 0，否则返回 -1。
 
-`sem_destroy()` 函数定义：
+### sem_destroy 函数
+
+函数定义：
 
 ```c++
 int sem_destroy(sem_t *sem);
@@ -54,7 +58,9 @@ int sem_destroy(sem_t *sem);
 - 函数作用：销毁一个信号量。
 - 函数返回值：若成功则返回 0，否则返回 -1。
 
-`sem_wait()` 函数定义：
+### sem_wait 函数
+
+ 函数定义：
 
 ```c++
 int sem_wait(sem_t *sem);
@@ -66,7 +72,9 @@ int sem_wait(sem_t *sem);
 - 函数作用：对信号量进行 P 操作，如果信号量的值小于等于 0，则会阻塞当前线程。
 - 函数返回值：若成功则返回 0，否则返回 -1。
 
-`sem_post()` 函数定义：
+### sem_post 函数
+
+函数定义：
 
 ```c++
 int sem_post(sem_t *sem);
@@ -123,7 +131,9 @@ int main() {
 
 互斥量是一种用于保护临界区的同步机制，可以确保同一时刻只有一个线程访问共享资源。当一个线程访问共享资源时，需要先获取互斥量的锁，其他线程需要等待该锁释放才能继续执行。
 
-`pthread_mutex_init()` 函数定义：
+### pthread_mutex_init 函数
+
+函数定义：
 
 ```c++
 int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);
@@ -136,7 +146,9 @@ int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);
 - 函数作用：初始化互斥量。
 - 函数返回值：若成功则返回 0，否则返回一个正整数的错误码。
 
-`pthread_mutex_destroy()` 函数定义：
+### pthread_mutex_destroy 函数
+
+函数定义：
 
 ```c++
 int pthread_mutex_destroy(pthread_mutex_t *mutex);
@@ -148,7 +160,9 @@ int pthread_mutex_destroy(pthread_mutex_t *mutex);
 - 函数作用：销毁互斥量。
 - 函数返回值：若成功则返回 0，否则返回一个正整数的错误码。
 
-`pthread_mutex_lock()` 函数定义：
+### pthread_mutex_lock 函数
+
+函数定义：
 
 ```c++
 int pthread_mutex_lock(pthread_mutex_t *mutex);
@@ -160,7 +174,9 @@ int pthread_mutex_lock(pthread_mutex_t *mutex);
 - 函数作用：给互斥量加锁，如果互斥量已经被锁住，则阻塞当前线程，直到互斥量被解锁。
 - 函数返回值：若成功则返回 0，否则返回一个正整数的错误码。
 
-`pthread_mutex_unlock()` 函数定义：
+### pthread_mutex_unlock 函数
+
+函数定义：
 
 ```c++
 int pthread_mutex_unlock(pthread_mutex_t *mutex);
@@ -227,7 +243,9 @@ Final value of shared_data is 5
 
 ## 条件变量
 
-`pthread_cond_init()`函数定义：
+### pthread_cond_init 函数
+
+函数定义：
 
 ```c++
 int pthread_cond_init(pthread_cond_t *cond, const pthread_condattr_t *attr);
@@ -243,7 +261,9 @@ int pthread_cond_init(pthread_cond_t *cond, const pthread_condattr_t *attr);
 
 - 函数返回值： 成功返回0，失败返回错误号。
 
-`pthread_cond_destory()`函数定义：
+### pthread_cond_destory 函数
+
+函数定义：
 
 ```c++
 int pthread_cond_destroy(pthread_cond_t *cond);
@@ -258,7 +278,9 @@ int pthread_cond_destroy(pthread_cond_t *cond);
 
 - 函数返回值： 成功返回0，失败返回错误号。
 
-`pthread_cond_broadcast()`函数定义：
+### pthread_cond_broadcast 函数
+
+函数定义：
 
 ```c++
 int pthread_cond_broadcast(pthread_cond_t *cond);
@@ -273,7 +295,9 @@ int pthread_cond_broadcast(pthread_cond_t *cond);
 
 - 函数返回值： 成功返回0，失败返回错误号。
 
-`pthread_cond_wait()`函数定义：
+### pthread_cond_wait 函数
+
+函数定义：
 
 ```c++
 int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex);
@@ -289,7 +313,9 @@ int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex);
 
 - 函数返回值： 成功返回0，失败返回错误号。
 
-`pthread_cond_signal()`函数定义：
+### pthread_cond_signal 函数
+
+函数定义：
 
 ```c++
 int pthread_cond_signal(pthread_cond_t *cond);
