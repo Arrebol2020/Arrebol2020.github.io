@@ -137,7 +137,7 @@ ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 
 
 
-## 博主寄语
+## 写在最后
 
 感谢你在茫茫人海中找到我🕵🏼
 
@@ -147,6 +147,8 @@ ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 
 <span id="busuanzi_container_page_pv">🎉你是第 <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i>  </span> 个读者
 
-㊗️你读完有所收获～
+㊗️ 你平安喜乐，顺遂无忧！
+
+希望你读完有所收获～
 
 🥂🥂🥂 
