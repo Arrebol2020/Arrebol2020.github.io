@@ -372,3 +372,19 @@ int pthread_create (pthread_t *thread_tid,                 //返回新生成的�
 ## 参考
 
 - [Cherno C++](https://www.bilibili.com/video/BV1Nt4y1k7sC/)
+
+
+
+## 博主寄语
+
+感谢你在茫茫人海中找到我🕵🏼
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<span id="busuanzi_container_page_pv">🎉你是第 <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i>  </span> 个读者
+
+㊗️你读完有所收获～
+
+🥂🥂🥂 

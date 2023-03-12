@@ -215,3 +215,19 @@ fflush() 会强迫将缓冲区内的数据写回参数 stream 指定的文件中
 
 - 最新版Web服务器项目详解 - 09 日志系统（上）：https://mp.weixin.qq.com/s/IWAlPzVDkR2ZRI5iirEfCg
 - 最新版Web服务器项目详解 - 10 日志系统（下）：https://mp.weixin.qq.com/s/f-ujwFyCe1LZa3EB561ehA
+
+
+
+## 博主寄语
+
+感谢你在茫茫人海中找到我🕵🏼
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<span id="busuanzi_container_page_pv">🎉你是第 <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i>  </span> 个读者
+
+㊗️你读完有所收获～
+
+🥂🥂🥂 

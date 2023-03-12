@@ -10,8 +10,6 @@ tags:
 - 二叉搜索树
 ---
 
-
-
 ## 669. 修剪二叉搜索树
 
 [力扣题目链接(opens new window)](https://leetcode.cn/problems/trim-a-binary-search-tree/)
@@ -183,3 +181,19 @@ tags:
 ## 参考
 
 - [代码随想录](https://programmercarl.com)
+
+
+
+## 博主寄语
+
+感谢你在茫茫人海中找到我🕵🏼
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<span id="busuanzi_container_page_pv">🎉你是第 <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i>  </span> 个读者
+
+㊗️你读完有所收获～
+
+🥂🥂🥂 
