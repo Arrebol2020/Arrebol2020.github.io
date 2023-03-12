@@ -207,7 +207,7 @@ void thread_func(int id) {
 }
 
 int main() {
-    int num_threads = 5;
+    const int num_threads = 5;
     std::thread threads[num_threads];
     for (int i = 0; i < num_threads; i++) {
         threads[i] = std::thread(thread_func, i);
@@ -224,15 +224,16 @@ int main() {
 在这个例子中，共享资源是一个整型变量 `shared_data`，每个线程都会将它增加一，但由于互斥量的保护，不会有两个线程同时访问和修改它。输出结果如下：
 
 ```vb
-Thread 0 starts.
-Thread 1 starts.
+
 Thread 2 starts.
-Thread 3 starts.
-Thread 4 starts.
 Thread 2 increases shared_data to 1
+Thread 4 starts.
 Thread 4 increases shared_data to 2
+Thread 0 starts.
 Thread 0 increases shared_data to 3
+Thread 1 starts.
 Thread 1 increases shared_data to 4
+Thread 3 starts.
 Thread 3 increases shared_data to 5
 Final value of shared_data is 5
 ```

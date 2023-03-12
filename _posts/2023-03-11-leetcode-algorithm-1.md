@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Leetcode 算法[10题]
+title: Leetcode 算法 1 [10题]
 date: 2023-03-11 20:11 +0800
 categories:
 - 算法
