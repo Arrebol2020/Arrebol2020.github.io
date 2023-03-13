@@ -304,6 +304,152 @@ ET是 epoll 的高效工作方式，它只通知发生变化的文件描述符�
 
 
 
+## HTTP报文格式
+
+HTTP报文分为请求报文和响应报文两种，每种报文必须按照特有格式生成，才能被浏览器端识别。
+
+其中，浏览器端向服务器发送的为请求报文，服务器处理后返回给浏览器端的为响应报文。
+
+### **请求报文**
+
+HTTP请求报文由请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。
+
+其中，请求分为两种，GET和POST，具体的：
+
+- **GET**
+
+```bash
+    GET /562f25980001b1b106000338.jpg HTTP/1.1
+    Host:img.mukewang.com
+    User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64)
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+    Accept:image/webp,image/*,*/*;q=0.8
+    Referer:http://www.imooc.com/
+    Accept-Encoding:gzip, deflate, sdch
+    Accept-Language:zh-CN,zh;q=0.8
+    空行
+    请求数据为空
+```
+
+
+
+- **POST**
+
+```bash
+    POST / HTTP1.1
+    Host:www.wrox.com
+    User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR .0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)
+    Content-Type:application/x-www-form-urlencoded
+    Content-Length:40
+    Connection: Keep-Alive
+    空行
+    name=Professional%20Ajax&publisher=Wiley
+```
+
+> - **请求行**，用来说明请求类型,要访问的资源以及所使用的HTTP版本。
+>   GET说明请求类型为GET，/562f25980001b1b106000338.jpg(URL)为要访问的资源，该行的最后一部分说明使用的是HTTP1.1版本。
+>
+> - **请求头部**，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息。
+>
+> - - HOST，给出请求资源所在服务器的域名。
+>   - User-Agent，HTTP客户端程序的信息，该信息由你发出请求使用的浏览器来定义,并且在每个请求中自动发送等。
+>   - Accept，说明用户代理可处理的媒体类型。
+>   - Accept-Encoding，说明用户代理支持的内容编码。
+>   - Accept-Language，说明用户代理能够处理的自然语言集。
+>   - Content-Type，说明实现主体的媒体类型。
+>   - Content-Length，说明实现主体的大小。
+>   - Connection，连接管理，可以是Keep-Alive或close。
+>
+> - **空行**，请求头部后面的空行是必须的即使第四部分的请求数据为空，也必须有空行。
+>
+> - **请求数据**也叫主体，可以添加任意的其他数据。
+
+
+
+### **响应报文**
+
+HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。
+
+```bash
+HTTP/1.1 200 OK
+Date: Fri, 22 May 2009 06:07:21 GMT
+Content-Type: text/html; charset=UTF-8
+空行
+<html>
+      <head></head>
+      <body>
+            <!--body goes here-->
+      </body>
+</html>
+```
+
+> - 状态行，由HTTP协议版本号， 状态码， 状态消息 三部分组成。
+>   第一行为状态行，（HTTP/1.1）表明HTTP版本为1.1版本，状态码为200，状态消息为OK。
+> - 消息报头，用来说明客户端要使用的一些附加信息。
+>   第二行和第三行为消息报头，Date:生成响应的日期和时间；Content-Type:指定了MIME类型的HTML(text/html),编码类型是UTF-8。
+> - 空行，消息报头后面的空行是必须的。
+> - 响应正文，服务器返回给客户端的文本信息。空行后面的html部分为响应正文。
+
+
+
+## recv 函数
+
+`recv` 函数用于从一个已连接的套接字中接收数据，其函数原型如下：
+
+```c++
+#include <sys/socket.h>
+
+ssize_t recv(int sockfd, void *buf, size_t len, int flags);
+```
+
+其中，参数含义如下：
+
+- `sockfd`：接收端的套接字文件描述符；
+- `buf`：存储接收数据的缓冲区；
+- `len`：接收数据的缓冲区长度；
+- `flags`：接收标志位。
+
+函数返回值为接收到的数据长度，如果返回值为 0 表示连接已关闭，如果返回值为 -1 表示接收数据发生错误，具体的错误原因可以通过查看全局变量 `errno` 的值来确定。
+
+其中 `flags` 参数可以设置为以下值之一：
+
+- `MSG_CONFIRM`：数据包可能会被截断；
+- `MSG_DONTWAIT`：在非阻塞模式下进行接收操作，当没有数据可读取时立即返回；
+- `MSG_PEEK`：不清空缓冲区，只是从中读取数据；
+- `MSG_WAITALL`：接收到指定长度的数据或者对端关闭连接才返回。
+
+需要注意的是，`recv` 函数会将接收到的数据放入缓冲区 `buf` 中，因此在调用该函数前需要确保缓冲区 `buf` 的大小至少为接收数据的长度 `len`。此外，`recv` 函数的调用可能会阻塞当前进程，直到有数据可读取或者超时，因此需要在合适的地方使用非阻塞模式或者设置适当的超时时间。
+
+
+
+TinyServer 的 `http::read_once()` 中，`bytes_read=recv(m_sockfd,m_read_buf+m_read_idx,READ_BUFFER_SIZE-m_read_idx,0);` 最后一个`参数传入 0 `表示：不希望使用任何特殊选项，仅仅希望执行一个普通的阻塞接收操作。由于recv函数是一个阻塞函数，因此会一直等待直到接收到至少一个字节的数据或者发生了错误才返回。因此，这个函数调用会一直阻塞，直到接收到数据或者发生了错误。
+
+## errno
+
+- EAGAIN：EAGAIN 是 errno.h 头文件中定义的一个宏，表示“资源暂时不可用”，通常在非阻塞 IO 中使用。
+
+  在非阻塞 IO 中，如果没有数据可读或可写，会返回 EAGAIN 错误，提示调用者此时的资源还不可用，需要稍后再试。这种情况下，调用者可以通过重新尝试操作或等待一段时间后再次尝试来解决问题。
+
+- EWOULDBLOCK：`EWOULDBLOCK` 和 `EAGAIN` 在大多数情况下是等价的，表示一个非阻塞的操作（比如读、写、接收、发送等）无法立即完成，因为没有可用的数据或缓冲区已满，但并不表示发生了错误。在这种情况下，可以重新尝试操作，直到它成功为止，或者等待一段时间后再尝试。
+
+
+
+## accept 相关疑问
+
+TinyWebServer 中 
+
+`int connfd = accept(listenfd, (struct sockaddr *)&client_address, &client_addrlength);`
+
+随后
+
+`users[connfd].init(*connfd*, *client_address*, m_root, m_CONNTrigmode, m_close_log, m_user, m_passWord, m_databaseName);`
+
+
+
+> 返回的 confd 会递增吗？
+
+在多次调用 `accept()` 函数时，如果客户端连接过程中没有出现中断，则返回的文件描述符应该是递增的，因为每个新连接都会分配一个新的套接字描述符。但是，如果在连接过程中发生了某种错误或连接中断，则可能会重复返回相同的文件描述符。因此，为了避免这种情况，我们通常会在处理完每个新连接后关闭对应的套接字描述符，以避免使用相同的文件描述符。
+
 
 
 ## 参考
