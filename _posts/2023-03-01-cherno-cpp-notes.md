@@ -369,6 +369,28 @@ int pthread_create (pthread_t *thread_tid,                 //返回新生成的�
 
 
 
+## 可见性
+
+C++ 中有三个基础的可见性修饰符
+
+- public：类内类外都可见
+- private：只有当前类可以访问（友元除外，友元可以从类中访问私有成员）
+- protected：可见性介于 public 和 private 之间，protected 变量在子类中能使用，类外不行
+
+
+
+## 数组
+
+C++ 数组是表示一堆的变量组成的集合
+
+创建在栈上的变量，在作用域外会自动销毁；而在堆上的变量，会一直存活到程序将它销毁之前
+
+
+
+## 字符串
+
+尽管 iostream 中有 string 的定义，当你想使用 std::cout  输出 string 类型变量时，需要引入 string 头文件，因为 string 头文件提供了 std::cout 的重载
+
 ## 参考
 
 - [Cherno C++](https://www.bilibili.com/video/BV1Nt4y1k7sC/)
