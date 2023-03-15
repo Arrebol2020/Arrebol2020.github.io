@@ -4,6 +4,7 @@ title: C++ 虚函数
 date: 2023-03-15 20:06 +0800
 categories:
 - 学习随笔
+- C++
 tags:
 - C++
 - 虚函数
