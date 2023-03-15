@@ -1,6 +1,6 @@
 ---
 layout: post
-title: TinyWebServer 相关函数使用与样例 [http连接处理]
+title: TinyWebServer 相关函数使用与样例 [http连接处理 上]
 date: 2023-03-03 17:11 +0800
 categories:
 - 项目
@@ -285,7 +285,7 @@ epoll 是 Linux 下的新一代 I/O 多路复用机制，它的设计思想与 p
 
 
 
-## ET 和 LT
+## ET 和 LT 模式
 
 ET和LT是epoll中的两种工作方式，指定事件触发的模式。
 
@@ -424,7 +424,7 @@ ssize_t recv(int sockfd, void *buf, size_t len, int flags);
 
 TinyServer 的 `http::read_once()` 中，`bytes_read=recv(m_sockfd,m_read_buf+m_read_idx,READ_BUFFER_SIZE-m_read_idx,0);` 最后一个`参数传入 0 `表示：不希望使用任何特殊选项，仅仅希望执行一个普通的阻塞接收操作。由于recv函数是一个阻塞函数，因此会一直等待直到接收到至少一个字节的数据或者发生了错误才返回。因此，这个函数调用会一直阻塞，直到接收到数据或者发生了错误。
 
-## errno
+## errno 的部分代码含义
 
 - EAGAIN：EAGAIN 是 errno.h 头文件中定义的一个宏，表示“资源暂时不可用”，通常在非阻塞 IO 中使用。
 
@@ -455,8 +455,6 @@ TinyWebServer 中
 ## 参考
 
 - [最新版Web服务器项目详解 - 04 http连接处理（上）](https://mp.weixin.qq.com/s/BfnNl-3jc_x5WPrWEJGdzQ)
-- [最新版Web服务器项目详解 - 05 http连接处理（中）](https://mp.weixin.qq.com/s/wAQHU-QZiRt1VACMZZjNlw)
-- [最新版Web服务器项目详解 - 06 http连接处理（下）](https://mp.weixin.qq.com/s/451xNaSFHxcxfKlPBV3OCg)
 
 
 
