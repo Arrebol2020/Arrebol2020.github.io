@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux 的 epoll
+title: Linux 的 epoll 机制
 date: 2023-03-17 16:46 +0800
 categories:
 - 学习随笔
