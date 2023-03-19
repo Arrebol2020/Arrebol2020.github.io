@@ -1,6 +1,6 @@
 ---
 layout: post
-title: C++ [封装]、[继承] 与 [多态]
+title: C++ 封装、继承 与 多态
 date: 2023-03-15 21:25 +0800
 categories:
 - 学习随笔
