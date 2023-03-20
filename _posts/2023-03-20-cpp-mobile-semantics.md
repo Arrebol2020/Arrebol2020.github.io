@@ -1,0 +1,28 @@
+---
+layout: post
+title: C++ 移动语义
+date: 2023-03-20 10:17 +0800
+categories:
+- 学习随笔
+- C++
+tags:
+- C++
+---
+
+
+
+## 写在最后
+
+感谢你在茫茫人海中找到我🕵🏼
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<span id="busuanzi_container_page_pv">🎉你是第 <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i>  </span> 个读者
+
+㊗️ 你平安喜乐，顺遂无忧！
+
+希望你读完有所收获～
+
+🥂🥂🥂 
