@@ -1,6 +1,6 @@
 ---
 layout: post
-title: c++ 强制类型转化
+title: C++ 强制类型转化
 date: 2023-03-28 10:21 +0800
 categories:
 - 学习随笔

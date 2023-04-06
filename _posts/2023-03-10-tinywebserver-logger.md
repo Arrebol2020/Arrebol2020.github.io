@@ -30,39 +30,44 @@ tags:
 ### 经典的线程安全懒汉模式
 
 ```c++
+#include <pthread.h>
+
 class single{
 private:
-    //私有静态指针变量指向唯一实例
+    // 私有化静态指针变量指向唯一实例
     static single *p;
 
-    //静态锁，是由于静态函数只能访问静态成员
+    // 静态锁，是由于静态函数只能访问静态成员
     static pthread_mutex_t lock;
 
-    //私有化构造函数
+    // 私有化构造函数
     single(){
-        pthread_mutex_init(&lock, NULL);
+        pthread_mutex_init(&lock, nullptr);
     }
+
     ~single(){}
 
 public:
-    //公有静态方法获取实例
+    // 共有静态方法获取实例
     static single* getinstance();
-
 };
 
 pthread_mutex_t single::lock;
-
-single* single::p = NULL;
+single* single::p = nullptr;
 single* single::getinstance(){
-    if (NULL == p){
+    if(nullptr == p)
+    {
         pthread_mutex_lock(&lock);
-        if (NULL == p){
+        if(nullptr == p) {
             p = new single;
         }
         pthread_mutex_unlock(&lock);
     }
+
     return p;
 }
+
+
 ```
 
 
@@ -132,8 +137,8 @@ single* single::getinstance(){
 饿汉模式不需要用锁，就可以实现线程安全。原因在于，在程序运行时就定义了对象，并对其初始化。之后，不管哪个线程调用成员函数getinstance()，都只不过是返回一个对象的指针而已。所以是线程安全的，不需要在获取实例的成员函数中加锁
 
 ```c++
- 1class single{
- 2private:
+class single{
+private:
     static single* p;
     single(){}
     ~single(){}
@@ -163,7 +168,85 @@ int main(){
 
 
 
-饿汉模式虽好，但其存在隐藏的问题，在于非静态对象（函数外的static对象）在不同编译单元中的初始化顺序是未定义的。如果在初始化完成之前调用 getInstance() 方法会返回一个未定义的实例
+饿汉模式虽好，但其存在隐藏的问题，在于`非静态对象（函数外的static对象）在不同编译单元中的初始化顺序是未定义的`。如果在初始化完成之前调用 getInstance() 方法会返回一个未定义的实例
+
+
+
+## 条件变量与生产者-消费者模型
+
+条件变量提供了一种线程间的通知机制，当某个共享数据达到某个值时,唤醒等待这个共享数据的线程。
+
+### 基础API
+
+- pthread_cond_init 函数，用于初始化条件变量
+- pthread_cond_destory 函数，销毁条件变量
+- pthread_cond_broadcast 函数，以广播的方式唤醒**所有**等待目标条件变量的线程
+- pthread_cond_wait 函数，用于等待目标条件变量。该函数调用时需要传入 **mutex 参数(加锁的互斥锁)** ，函数执行时，先把调用线程放入条件变量的请求队列，然后将互斥锁 mutex 解锁，当函数成功返回为 0 时，表示重新抢到了互斥锁，互斥锁会再次被锁上， **也就是说函数内部会有一次解锁和加锁操作**.
+
+使用pthread_cond_wait方式如下：
+
+```c++
+pthread _mutex_lock(&mutex)
+
+while(线程执行的条件是否成立){
+    pthread_cond_wait(&cond, &mutex);
+}
+
+pthread_mutex_unlock(&mutex);
+```
+
+pthread_cond_wait 执行后的内部操作分为以下几步：
+
+- 将线程放在条件变量的请求队列后，内部解锁
+- 线程等待被 pthread_cond_broadcast 信号唤醒或者 pthread_cond_signal 信号唤醒，唤醒后去竞争锁
+- 若竞争到互斥锁，内部再次加锁
+
+
+
+### 为什么使用前要加锁
+
+多线程访问，为了避免资源竞争，所以要加锁，使得每个线程互斥的访问共有资源
+
+
+
+### pthread_cond_wait 内部为什么要解锁
+
+如果 while 或者 if 判断的时候，满足执行条件，线程便会调用 pthread_cond_wait 阻塞自己，此时它还在持有锁，如果他不解锁，那么其他线程将会无法访问公有资源。 
+
+具体到 pthread_cond_wait 的内部实现，当 pthread_cond_wait 被调用线程阻塞的时候，pthread_cond_wait 会自动释放互斥锁。
+
+
+
+### 为什么要调用线程放入条件变量的请求队列后再解锁
+
+线程是并发执行的，如果在把调用线程 A 放在等待队列之前，就释放了互斥锁，这就意味着其他线程比如线程 B 可以获得互斥锁去访问公有资源，这时候线程 A 所等待的条件改变了，但是它没有被放在等待队列上，导致 A 忽略了等待条件被满足的信号。
+
+倘若在线程A调用 pthread_cond_wait 开始，到把 A 放在等待队列的过程中，都持有互斥锁，其他线程无法得到互斥锁，就不能改变公有资源。
+
+
+
+### 为什么最后还要加锁
+
+将线程放在条件变量的请求队列后，将其解锁，此时等待被唤醒，若成功竞争到互斥锁，再次加锁。
+
+
+
+### 为什么判断线程执行的条件用 while 而不是 if
+
+一般来说，在多线程资源竞争的时候，在一个使用资源的线程里面（消费者）判断资源是否可用，不可用，便调用 pthread_cond_wait，在另一个线程里面（生产者）如果判断资源可用的话，则调用 pthread_cond_signal 发送一个资源可用信号。
+
+在 wait 成功之后，资源就一定可以被使用么？答案是否定的，如果同时有两个或者两个以上的线程正在等待此资源，wait 返回后，资源可能已经被使用了。
+
+再具体点，有可能多个线程都在等待这个资源可用的信号，信号发出后只有一个资源可用，但是有 A，B 两个线程都在等待，B 比较速度快，获得互斥锁，然后加锁，消耗资源，然后解锁，之后 A 获得互斥锁，但 A 回去发现资源已经被使用了，它便有两个选择，一个是去访问不存在的资源，另一个就是继续等待，那么继续等待下去的条件就是使用 while，要不然使用 if 的话 pthread_cond_wait 返回后，就会顺序执行下去。
+
+所以，在这种情况下，应该使用 while 而不是 if:
+
+```c++
+while(resource == FALSE)
+    pthread_cond_wait(&cond, &mutex);
+```
+
+如果只有一个消费者，那么使用if是可以的。
 
 
 
