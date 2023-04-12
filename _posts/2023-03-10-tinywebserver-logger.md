@@ -250,21 +250,46 @@ while(resource == FALSE)
 
 
 
-fputs
+## fputs 函数
+
+`fputs()`函数是 C 和 C++ 语言中用于向文件中写入字符串的函数。其函数原型为：
+
+```c++
+int fputs(const char* str, FILE* stream);
+```
+
+`fputs()`函数的参数是一个字符串指针和一个文件指针。该函数将字符串指针所指向的字符串写入到文件指针所指向的文件中，直到遇到字符串结束符`\0`为止。
+
+`fputs()`函数返回值是一个非负整数，如果写入成功，返回非负整数，否则返回 `EOF`。该函数会自动在写入字符串末尾添加一个换行符`\n`，如果不需要添加换行符，可以使用 `fputs(str, stdout)` 来代替 `puts(str)` 函数。
+
+下面是一个简单的示例，演示了如何使用`fputs()`函数向文件中写入字符串：
 
 ```c++
 #include <stdio.h>
-int fputs(const char *str, FILE *stream);
+
+int main() {
+  FILE* fp = fopen("file.txt", "w");
+  if (fp == NULL) {
+    printf("Failed to open file\n");
+    return 1;
+  }
+  const char* str = "Hello, world!";
+  if (fputs(str, fp) == EOF) {
+    printf("Failed to write string\n");
+    return 1;
+  }
+  fclose(fp);
+  return 0;
+}
 ```
 
-- str，一个数组，包含了要写入的以空字符终止的字符序列
-- stream，指向FILE对象的指针，该FILE对象标识了要被写入字符串的流
+上述代码中，首先打开文件 `file.txt`，如果打开文件失败则返回 1。然后使用`fputs()`函数向文件中写入字符串，如果写入失败则返回 1 。最后关闭文件指针并返回0。
 
 
 
-可变宏参数 _\_VA_ARGS\_\_
+## 可变宏参数 _\_VA_ARGS\_\_
 
-_\_VA_ARGS\_\_ 是一个可变参数的宏，定义时宏定义中参数列表的最后一个参数为省略号，在实际使用时会发现有时会加##，有时又不加
+_\_VA_ARGS\_\_  是一个可变参数的宏，定义时宏定义中参数列表的最后一个参数为省略号，在实际使用时会发现有时会加 ##，有时又不加
 
 ```c++
 //最简单的定义
@@ -275,7 +300,7 @@ _\_VA_ARGS\_\_ 是一个可变参数的宏，定义时宏定义中参数列表�
 #define my_print3(format, ...) printf(format, ##__VA_ARGS__)
 ```
 
-_\_VA_ARGS\_\_  宏前面加上##的作用在于，当可变参数的个数为0时，这里printf参数列表中的的##会把前面多余的","去掉，否则会编译出错，建议使用后面这种，使得程序更加健壮
+_\_VA_ARGS\_\_  宏前面加上##的作用在于，`当可变参数的个数为 0 时，这里 printf 参数列表中的的 ## 会把前面多余的 "," 去掉，否则会编译出错，建议使用后面这种，使得程序更加健壮`
 
 
 
