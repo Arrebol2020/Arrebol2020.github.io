@@ -17,7 +17,6 @@ tags:
 
 ```bash
 brew install pcl
-brew install qt
 brew install opencv
 brew install cloudcompare
 ```
